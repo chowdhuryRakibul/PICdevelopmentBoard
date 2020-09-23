@@ -1,0 +1,98 @@
+#include <main.h>
+#define LCD_ENABLE_PIN PIN_D2
+#define LCD_RS_PIN PIN_D0
+#define LCD_RW_PIN PIN_D1
+#define LCD_DATA4 PIN_D4
+#define LCD_DATA5 PIN_D5
+#define LCD_DATA6 PIN_D6
+#define LCD_DATA7 PIN_D7
+/*
+#bit C1=0xF81.7     //Assigning Columns of Keypad to PORT D
+#bit C2=0xF81.6
+#bit C3=0xF81.5
+#bit C4=0xF81.4
+#bit R1=0xF81.3    //Assigning the rows of Keypad to PORT D
+#bit R2=0xF81.2
+#bit R3=0xF81.1
+#bit R4=0xF81.0
+*/
+#bit C1=0xF8A.0     //Assigning Columns of Keypad to PORT D
+#bit C2=0xF8A.1
+#bit C3=0xF8A.2
+#bit C4=0xF8A.3
+#bit R1=0xF8A.7    //Assigning the rows of Keypad to PORT D
+#bit R2=0xF8A.6
+#bit R3=0xF8A.5
+#bit R4=0xF8A.4
+
+#bit TRIS_C1=0xF93.7                //Setting the TRIS  pins of PORT D
+#bit TRIS_C2=0xF93.6
+#bit TRIS_C3=0xF93.5
+#bit TRIS_C4=0xF93.4
+#bit TRIS_R1=0xF93.3
+#bit TRIS_R2=0xF93.2
+#bit TRIS_R3=0xF93.1
+#bit TRIS_R4=0xF93.0
+
+
+#include <lcd.c>
+char keypad();
+void main()
+{
+  
+char k;
+   lcd_init();
+
+   lcd_putc("\fReady...\n");
+   TRIS_R1=TRIS_R2=TRIS_R3=TRIS_R4=0;  //Set all rows pin as output mode
+   TRIS_C1=TRIS_C2=TRIS_C3=TRIS_C4=1;          //Set all coloumn as input mode
+
+   while(TRUE)
+   {
+      k=keypad();
+      if(k!=0)
+      {
+         lcd_gotoxy(1, 2);
+         lcd_putc(k);
+      }
+     
+   }
+
+}
+
+
+
+char keypad()
+{
+   output_low(PIN_B3); 
+   output_high(PIN_B2); 
+   output_high(PIN_B1); 
+   output_high(PIN_B0); 
+   if(input_state(PIN_B7)==0)
+      {
+         //delay_ms(20);
+         //while(input_state(PIN_B7)==0);
+         return '1';
+      }
+    else if(input_state(PIN_B6)==0)
+      {
+         //delay_ms(20);
+         //while(input_state(PIN_B6)==0);
+         return '2';
+      }
+     else if(input_state(PIN_B5)==0)
+      {
+         //delay_ms(20);
+         //while(input_state(PIN_B5)==0);
+         return '3';
+      }
+     else if(input_state(PIN_B4)==0)
+      {
+         //delay_ms(20);
+         //while(input_state(PIN_B4)==0);
+         return '4';
+      }
+      
+}
+
+

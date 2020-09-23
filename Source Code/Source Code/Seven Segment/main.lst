@@ -1,0 +1,227 @@
+CCS PCH C Compiler, Version 5.015, 5967               10-Feb-18 14:54
+
+               Filename:   C:\Users\Admin\Desktop\PIC Dev Board PCB by Shuvo Vai\Source Code\Source Code\Seven Segment\main.lst
+
+               ROM used:   254 bytes (1%)
+                           Largest free fragment is 32514
+               RAM used:   5 (0%) at main() level
+                           6 (0%) worst case
+               Stack used: 1 locations
+               Stack size: 31
+
+*
+0000:  GOTO   002A
+.................... #include <main.h> 
+.................... #include <18F4550.h> 
+.................... //////////// Standard Header file for the PIC18F4550 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC18F4550 
+....................  
+.................... #list 
+....................  
+.................... #device ADC=16 
+....................  
+.................... #FUSES NOWDT                    //No Watch Dog Timer 
+.................... #FUSES WDT128                   //Watch Dog Timer uses 1:128 Postscale 
+.................... #FUSES NOLPT1OSC                //Timer1 configured for higher power operation 
+.................... //#FUSES RSS2048                  //Medium sized secure RAM 
+.................... #FUSES NOWRTB                   //Boot block not write protected 
+.................... #FUSES NOWRTC                   //Configuration registers not write protected 
+.................... //#FUSES SDOC7                    //SDO is on RC7 
+.................... #FUSES BORV43                   //Brownout reset at 4.3V 
+.................... //#FUSES PLL_DIV_4              
+.................... //#FUSES NODS                     //Deep Sleep operation is always disabled 
+.................... //#FUSES HFOFST                   //High Frequency INTRC starts clocking CPU immediately 
+.................... #FUSES NOLPT1OSC                //Timer1 configured for higher power operation 
+.................... //#FUSES VREFNORM_CVREFNORM       //VREF and CVREF are mapped to their default pins 
+.................... //#FUSES CCP2B5                   //CCP2 input/output multiplexed with RB5 
+.................... #FUSES NOXINST                  //Extended set extension and Indexed Addressing mode disabled (Legacy mode) 
+.................... //#FUSES VREFALT_CVREFNORM        //VREF is mapped to AVDD and AVSS; CVREF is mapped to default pins 
+.................... #FUSES NOWRTC                   //Configuration registers not write protected 
+.................... #FUSES NOWRTB                   //Boot block not write protected 
+....................  
+.................... #use delay(crystal=20000000) 
+0004:  CLRF   FEA
+0006:  MOVLW  06
+0008:  MOVWF  FE9
+000A:  MOVF   FEF,W
+000C:  BZ    0028
+000E:  MOVLW  06
+0010:  MOVWF  01
+0012:  CLRF   00
+0014:  DECFSZ 00,F
+0016:  BRA    0014
+0018:  DECFSZ 01,F
+001A:  BRA    0012
+001C:  MOVLW  7B
+001E:  MOVWF  00
+0020:  DECFSZ 00,F
+0022:  BRA    0020
+0024:  DECFSZ FEF,F
+0026:  BRA    000E
+0028:  RETURN 0
+....................  
+....................  
+.................... #define disp1 PIN_A2 
+.................... #define disp2 PIN_A1 
+.................... #define disp3 PIN_A0 
+.................... #define disp4 PIN_A3 
+....................  
+....................  
+.................... void main() 
+002A:  CLRF   FF8
+002C:  BCF    FD0.7
+002E:  MOVF   FC1,W
+0030:  ANDLW  C0
+0032:  IORLW  0F
+0034:  MOVWF  FC1
+0036:  MOVLW  07
+0038:  MOVWF  FB4
+.................... { 
+....................    
+....................     
+....................       output_high(disp1); 
+003A:  BCF    F92.2
+003C:  BSF    F89.2
+....................        
+....................       output_low(PIN_D0); 
+003E:  BCF    F95.0
+0040:  BCF    F8C.0
+....................       delay_ms(500); 
+0042:  MOVLW  02
+0044:  MOVWF  05
+0046:  MOVLW  FA
+0048:  MOVWF  06
+004A:  RCALL  0004
+004C:  DECFSZ 05,F
+004E:  BRA    0046
+....................       output_low(PIN_D1); 
+0050:  BCF    F95.1
+0052:  BCF    F8C.1
+....................       delay_ms(500); 
+0054:  MOVLW  02
+0056:  MOVWF  05
+0058:  MOVLW  FA
+005A:  MOVWF  06
+005C:  RCALL  0004
+005E:  DECFSZ 05,F
+0060:  BRA    0058
+....................       output_low(PIN_D2); 
+0062:  BCF    F95.2
+0064:  BCF    F8C.2
+....................       delay_ms(500); 
+0066:  MOVLW  02
+0068:  MOVWF  05
+006A:  MOVLW  FA
+006C:  MOVWF  06
+006E:  RCALL  0004
+0070:  DECFSZ 05,F
+0072:  BRA    006A
+....................       output_low(PIN_D3); 
+0074:  BCF    F95.3
+0076:  BCF    F8C.3
+....................       delay_ms(500); 
+0078:  MOVLW  02
+007A:  MOVWF  05
+007C:  MOVLW  FA
+007E:  MOVWF  06
+0080:  RCALL  0004
+0082:  DECFSZ 05,F
+0084:  BRA    007C
+....................       output_low(PIN_D4); 
+0086:  BCF    F95.4
+0088:  BCF    F8C.4
+....................       delay_ms(500); 
+008A:  MOVLW  02
+008C:  MOVWF  05
+008E:  MOVLW  FA
+0090:  MOVWF  06
+0092:  RCALL  0004
+0094:  DECFSZ 05,F
+0096:  BRA    008E
+....................       output_low(PIN_D5); 
+0098:  BCF    F95.5
+009A:  BCF    F8C.5
+....................       delay_ms(500); 
+009C:  MOVLW  02
+009E:  MOVWF  05
+00A0:  MOVLW  FA
+00A2:  MOVWF  06
+00A4:  RCALL  0004
+00A6:  DECFSZ 05,F
+00A8:  BRA    00A0
+....................       output_low(PIN_D6); 
+00AA:  BCF    F95.6
+00AC:  BCF    F8C.6
+....................       delay_ms(500); 
+00AE:  MOVLW  02
+00B0:  MOVWF  05
+00B2:  MOVLW  FA
+00B4:  MOVWF  06
+00B6:  RCALL  0004
+00B8:  DECFSZ 05,F
+00BA:  BRA    00B2
+....................       output_low(PIN_D7); 
+00BC:  BCF    F95.7
+00BE:  BCF    F8C.7
+....................       delay_ms(500); 
+00C0:  MOVLW  02
+00C2:  MOVWF  05
+00C4:  MOVLW  FA
+00C6:  MOVWF  06
+00C8:  RCALL  0004
+00CA:  DECFSZ 05,F
+00CC:  BRA    00C4
+....................        
+....................       output_high(PIN_D0); 
+00CE:  BCF    F95.0
+00D0:  BSF    F8C.0
+....................       output_high(PIN_D1); 
+00D2:  BCF    F95.1
+00D4:  BSF    F8C.1
+....................       output_high(PIN_D2); 
+00D6:  BCF    F95.2
+00D8:  BSF    F8C.2
+....................       output_high(PIN_D3); 
+00DA:  BCF    F95.3
+00DC:  BSF    F8C.3
+....................       output_high(PIN_D4); 
+00DE:  BCF    F95.4
+00E0:  BSF    F8C.4
+....................       output_high(PIN_D5); 
+00E2:  BCF    F95.5
+00E4:  BSF    F8C.5
+....................       output_high(PIN_D6); 
+00E6:  BCF    F95.6
+00E8:  BSF    F8C.6
+....................       output_high(PIN_D7); 
+00EA:  BCF    F95.7
+00EC:  BSF    F8C.7
+....................       delay_ms(1000); 
+00EE:  MOVLW  04
+00F0:  MOVWF  05
+00F2:  MOVLW  FA
+00F4:  MOVWF  06
+00F6:  RCALL  0004
+00F8:  DECFSZ 05,F
+00FA:  BRA    00F2
+....................   
+.................... } 
+00FC:  SLEEP 
+
+Configuration Fuses:
+   Word  1: CC04   PLL5 CPUDIV1 NOUSBDIV HS FCMEN IESO
+   Word  2: 0E2E   PUT BROWNOUT BORV43 VREGEN NOWDT WDT128
+   Word  3: 8300   CCP2C1 PBADEN NOLPT1OSC MCLR
+   Word  4: 00A1   STVREN NOLVP ICSP2 NOXINST NODEBUG
+   Word  5: C00F   NOPROTECT NOCPB NOCPD
+   Word  6: E00F   NOWRT NOWRTC NOWRTB NOWRTD
+   Word  7: 400F   NOEBTR NOEBTRB

@@ -1,0 +1,108 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+005-006 MAIN.adc2
+007-008 MAIN.adc3
+009-00A @PRINTF_LU_670.P1
+009     @PSTRINGCN_670.P2
+009     lcd_init.i
+009     MAIN.@SCRATCH1
+009     @PSTRINGC_670.@SCRATCH1
+00A-00D lcd_init.LCD_INIT_STRING
+00A     @PSTRINGC_670.@SCRATCH2
+00A     @PSTRINGCN_670.@SCRATCH1
+00B     @PSTRINGCN_670.@SCRATCH2
+00B     @PRINTF_LU_670.@SCRATCH1
+00C     @PRINTF_LU_670.@SCRATCH2
+00D     @PRINTF_LU_670.@SCRATCH3
+00E     lcd_init.@SCRATCH1
+00E     @PRINTF_LU_670.@SCRATCH4
+00F     @PRINTF_LU_670.@SCRATCH5
+010     @PRINTF_LU_670.@SCRATCH6
+011     @PRINTF_LU_670.@SCRATCH7
+012     lcd_putc.c
+013     @delay_ms1.P1
+013     lcd_gotoxy.x
+014     lcd_gotoxy.y
+015     lcd_gotoxy.address
+016     lcd_gotoxy.@SCRATCH1
+017     lcd_send_byte.address
+018     lcd_send_byte.n
+019     lcd_read_byte.low
+019     lcd_send_byte.@SCRATCH1
+01A     lcd_read_byte.high
+01A     lcd_send_nibble.n
+01B     lcd_read_nibble.n
+01B     lcd_read_byte.@SCRATCH1
+01C     lcd_read_nibble.@SCRATCH1
+F83     PSP_DATA
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2_LOW
+FBB     CCP_2
+FBC     CCP_2_HIGH
+FBE     CCP_1
+FBE     CCP_1_LOW
+FBF     CCP_1_HIGH
+FE1-FE2 @WRITE_PACKED_MEMORY.P1
+FE1-FE2 @READ_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PACKED_MEMORY.P1
+FE9-FEA @WRITE_PROGRAM_MEMORY.P2
+FE9-FEA @READ_PROGRAM_MEMORY.P3
+FE9-FEA @READ_PACKED_MEMORY.P4
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P1
+FF6-FF8 @READ_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+000004  @const687.call
+000010  @const689.call
+000022  @delay_ms1
+000048  lcd_send_nibble
+000090  lcd_read_nibble
+0000E2  lcd_read_byte
+000130  lcd_send_byte
+000176  lcd_init
+0001F6  lcd_gotoxy
+000218  lcd_putc
+000268  @PSTRINGC_670
+00028A  @PSTRINGCN_670
+0002A8  @PRINTF_LU_670
+000362  MAIN
+000362  @cinit1
+000372  @cinit2
+
+Project Directory:
+    C:\Users\Admin\Desktop\PIC Dev Board PCB by Shuvo Vai\Source Code\Source Code\LCD ADC\
+
+Project Files:
+    main.c                                                  [02-Aug-17 13:10  CRC=334D4412]
+    main.h                                                  [02-Aug-17 13:09  CRC=111F0D7E]
+    ..\..\..\..\..\..\..\Program Files (x86)\PICC\devices\18F4550.h [12-Nov-13 14:35  CRC=5337E248]
+    ..\..\..\..\..\..\..\Program Files (x86)\PICC\drivers\lcd.c [19-Sep-13 15:38  CRC=D1A6378A]
+
+Source signature=3AF0A2EC
+
+Units:
+    main (main)
+
+Compiler Settings:
+    Processor:      PIC18F4550
+    Pointer Size:   16
+    ADC Range:      0-1023
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   main.xsym
+    Errors:      main.err
+    Ext Symbols: main.esym
+    INHX32:      main.hex
+    Symbols:     main.sym
+    List:        main.lst
+    Debug/COFF:  main.cof
+    Project:     main.ccspjt
+    Call Tree:   main.tre
+    Statistics:  main.STA

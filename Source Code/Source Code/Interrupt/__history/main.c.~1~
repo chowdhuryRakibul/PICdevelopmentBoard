@@ -1,0 +1,27 @@
+#include <main.h>
+
+#INT_EXT1
+void  EXT1_isr(void) 
+{
+
+}
+
+#INT_EXT2
+void  EXT2_isr(void) 
+{
+
+}
+
+void main()
+{
+
+	enable_interrupts(INT_EXT1);
+	enable_interrupts(INT_EXT2);
+	enable_interrupts(GLOBAL);
+
+	while(TRUE)
+	{
+		//TODO: User Code
+	}
+
+}

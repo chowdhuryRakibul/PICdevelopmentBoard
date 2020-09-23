@@ -1,0 +1,239 @@
+CCS PCH C Compiler, Version 5.015, 5967               10-Feb-18 14:35
+
+               Filename:   C:\Users\Admin\Desktop\PIC Dev Board PCB by Shuvo Vai\Source Code\Source Code\Dot matrix\main.lst
+
+               ROM used:   320 bytes (1%)
+                           Largest free fragment is 32448
+               RAM used:   21 (1%) at main() level
+                           27 (1%) worst case
+               Stack used: 1 locations
+               Stack size: 31
+
+*
+0000:  GOTO   006A
+.................... #include <main.h> 
+.................... #include <18F4550.h> 
+.................... //////////// Standard Header file for the PIC18F4550 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC18F4550 
+0004:  MOVF   17,W
+0006:  ANDLW  07
+0008:  MOVWF  00
+000A:  RRCF   17,W
+000C:  MOVWF  01
+000E:  RRCF   01,F
+0010:  RRCF   01,F
+0012:  MOVLW  1F
+0014:  ANDWF  01,F
+0016:  MOVF   01,W
+0018:  ADDWF  19,W
+001A:  MOVWF  FE9
+001C:  MOVLW  00
+001E:  ADDWFC 1A,W
+0020:  MOVWF  FEA
+0022:  CLRF   01
+0024:  INCF   01,F
+0026:  INCF   00,F
+0028:  BRA    002C
+002A:  RLCF   01,F
+002C:  DECFSZ 00,F
+002E:  BRA    002A
+0030:  MOVF   18,F
+0032:  BZ    003A
+0034:  MOVF   01,W
+0036:  IORWF  FEF,F
+0038:  BRA    0040
+003A:  COMF   01,F
+003C:  MOVF   01,W
+003E:  ANDWF  FEF,F
+0040:  RETURN 0
+....................  
+.................... #list 
+....................  
+.................... #device ADC=16 
+....................  
+.................... #FUSES NOWDT                    //No Watch Dog Timer 
+.................... #FUSES WDT128                   //Watch Dog Timer uses 1:128 Postscale 
+.................... #FUSES NOLPT1OSC                //Timer1 configured for higher power operation 
+.................... //#FUSES RSS2048                  //Medium sized secure RAM 
+.................... #FUSES NOWRTB                   //Boot block not write protected 
+.................... #FUSES NOWRTC                   //Configuration registers not write protected 
+.................... //#FUSES SDOC7                    //SDO is on RC7 
+.................... #FUSES BORV43                   //Brownout reset at 4.3V 
+.................... //#FUSES PLL_DIV_4              
+.................... //#FUSES NODS                     //Deep Sleep operation is always disabled 
+.................... //#FUSES HFOFST                   //High Frequency INTRC starts clocking CPU immediately 
+.................... #FUSES NOLPT1OSC                //Timer1 configured for higher power operation 
+.................... //#FUSES VREFNORM_CVREFNORM       //VREF and CVREF are mapped to their default pins 
+.................... //#FUSES CCP2B5                   //CCP2 input/output multiplexed with RB5 
+.................... #FUSES NOXINST                  //Extended set extension and Indexed Addressing mode disabled (Legacy mode) 
+.................... //#FUSES VREFALT_CVREFNORM        //VREF is mapped to AVDD and AVSS; CVREF is mapped to default pins 
+.................... #FUSES NOWRTC                   //Configuration registers not write protected 
+.................... #FUSES NOWRTB                   //Boot block not write protected 
+....................  
+.................... #use delay(crystal=20000000) 
+0042:  CLRF   FEA
+0044:  MOVLW  16
+0046:  MOVWF  FE9
+0048:  MOVF   FEF,W
+004A:  BZ    0066
+004C:  MOVLW  06
+004E:  MOVWF  01
+0050:  CLRF   00
+0052:  DECFSZ 00,F
+0054:  BRA    0052
+0056:  DECFSZ 01,F
+0058:  BRA    0050
+005A:  MOVLW  7B
+005C:  MOVWF  00
+005E:  DECFSZ 00,F
+0060:  BRA    005E
+0062:  DECFSZ FEF,F
+0064:  BRA    004C
+0066:  GOTO   0134 (RETURN)
+....................  
+....................  
+.................... #define disp1 PIN_A2 
+.................... #define disp2 PIN_A1 
+.................... #define disp3 PIN_A0 
+.................... #define disp4 PIN_A3 
+.................... int row[8] = {PIN_C1,PIN_D4,PIN_D1,PIN_D6,PIN_A0,PIN_D0,PIN_A1,PIN_A4}; 
+.................... int col[8] = {PIN_D5,PIN_A2,PIN_A3,PIN_C0,PIN_A5,PIN_D7,PIN_D3,PIN_D2}; 
+....................  
+.................... void main() 
+006A:  CLRF   FF8
+006C:  BCF    FD0.7
+006E:  MOVF   FC1,W
+0070:  ANDLW  C0
+0072:  IORLW  0F
+0074:  MOVWF  FC1
+0076:  MOVLW  07
+0078:  MOVWF  FB4
+007A:  MOVLW  11
+007C:  MOVWF  04
+007E:  MOVLW  1C
+0080:  MOVWF  05
+0082:  MOVLW  19
+0084:  MOVWF  06
+0086:  MOVLW  1E
+0088:  MOVWF  07
+008A:  CLRF   08
+008C:  MOVLW  18
+008E:  MOVWF  09
+0090:  MOVLW  01
+0092:  MOVWF  0A
+0094:  MOVLW  04
+0096:  MOVWF  0B
+0098:  MOVLW  1D
+009A:  MOVWF  0C
+009C:  MOVLW  02
+009E:  MOVWF  0D
+00A0:  MOVLW  03
+00A2:  MOVWF  0E
+00A4:  MOVLW  10
+00A6:  MOVWF  0F
+00A8:  MOVLW  05
+00AA:  MOVWF  10
+00AC:  MOVLW  1F
+00AE:  MOVWF  11
+00B0:  MOVLW  1B
+00B2:  MOVWF  12
+00B4:  MOVLW  1A
+00B6:  MOVWF  13
+.................... { 
+....................    
+....................    while(TRUE) 
+....................    { 
+....................        
+....................       for(int j = 0;j<8;j++) 
+00B8:  CLRF   14
+00BA:  MOVF   14,W
+00BC:  SUBLW  07
+00BE:  BNC   013C
+....................       { 
+....................          output_low(col[j]); 
+00C0:  CLRF   03
+00C2:  MOVF   14,W
+00C4:  ADDLW  0C
+00C6:  MOVWF  FE9
+00C8:  MOVLW  00
+00CA:  ADDWFC 03,W
+00CC:  MOVWF  FEA
+00CE:  MOVFF  FEF,16
+00D2:  MOVFF  16,17
+00D6:  CLRF   18
+00D8:  MOVLW  0F
+00DA:  MOVWF  1A
+00DC:  MOVLW  89
+00DE:  MOVWF  19
+00E0:  RCALL  0004
+00E2:  MOVFF  16,17
+00E6:  CLRF   18
+00E8:  MOVLW  0F
+00EA:  MOVWF  1A
+00EC:  MOVLW  92
+00EE:  MOVWF  19
+00F0:  RCALL  0004
+....................         for(int i = 0;i<8;i++) 
+00F2:  CLRF   15
+00F4:  MOVF   15,W
+00F6:  SUBLW  07
+00F8:  BNC   0138
+....................          { 
+....................          output_high(row[i]); 
+00FA:  CLRF   03
+00FC:  MOVF   15,W
+00FE:  ADDLW  04
+0100:  MOVWF  FE9
+0102:  MOVLW  00
+0104:  ADDWFC 03,W
+0106:  MOVWF  FEA
+0108:  MOVFF  FEF,16
+010C:  MOVFF  16,17
+0110:  MOVLW  01
+0112:  MOVWF  18
+0114:  MOVLW  0F
+0116:  MOVWF  1A
+0118:  MOVLW  89
+011A:  MOVWF  19
+011C:  RCALL  0004
+011E:  MOVFF  16,17
+0122:  CLRF   18
+0124:  MOVLW  0F
+0126:  MOVWF  1A
+0128:  MOVLW  92
+012A:  MOVWF  19
+012C:  RCALL  0004
+....................          delay_ms(100); 
+012E:  MOVLW  64
+0130:  MOVWF  16
+0132:  BRA    0042
+0134:  INCF   15,F
+0136:  BRA    00F4
+....................          } 
+0138:  INCF   14,F
+013A:  BRA    00BA
+....................       } 
+013C:  BRA    00B8
+....................        
+....................    } 
+....................  
+.................... } 
+013E:  SLEEP 
+
+Configuration Fuses:
+   Word  1: CC04   PLL5 CPUDIV1 NOUSBDIV HS FCMEN IESO
+   Word  2: 0E2E   PUT BROWNOUT BORV43 VREGEN NOWDT WDT128
+   Word  3: 8300   CCP2C1 PBADEN NOLPT1OSC MCLR
+   Word  4: 00A1   STVREN NOLVP ICSP2 NOXINST NODEBUG
+   Word  5: C00F   NOPROTECT NOCPB NOCPD
+   Word  6: E00F   NOWRT NOWRTC NOWRTB NOWRTD
+   Word  7: 400F   NOEBTR NOEBTRB

@@ -1,0 +1,8 @@
+*** Error 111 "C:\Users\Shuvangkar\Google Drive\Learning Folder\PIC18F Development Board\Source Code\Interrupt\main.h" Line 12(7,30): Unknown keyword in #FUSES   "PLL_DIV_4"
+*** Error 111 "C:\Users\Shuvangkar\Google Drive\Learning Folder\PIC18F Development Board\Source Code\Interrupt\main.h" Line 13(7,74): Unknown keyword in #FUSES   "NODS"
+*** Error 111 "C:\Users\Shuvangkar\Google Drive\Learning Folder\PIC18F Development Board\Source Code\Interrupt\main.h" Line 14(7,87): Unknown keyword in #FUSES   "HFOFST"
+*** Error 111 "C:\Users\Shuvangkar\Google Drive\Learning Folder\PIC18F Development Board\Source Code\Interrupt\main.h" Line 16(7,82): Unknown keyword in #FUSES   "VREFNORM_CVREFNORM"
+*** Error 111 "C:\Users\Shuvangkar\Google Drive\Learning Folder\PIC18F Development Board\Source Code\Interrupt\main.h" Line 17(7,73): Unknown keyword in #FUSES   "CCP2B5"
+*** Error 111 "C:\Users\Shuvangkar\Google Drive\Learning Folder\PIC18F Development Board\Source Code\Interrupt\main.h" Line 19(7,99): Unknown keyword in #FUSES   "VREFALT_CVREFNORM"
+      6 Errors,  0 Warnings.
+Build Failed.

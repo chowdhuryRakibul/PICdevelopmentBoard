@@ -1,0 +1,32 @@
+#include <main.h>
+
+#INT_EXT1
+void  EXT1_isr(void) 
+{
+   output_high(PIN_D6);
+}
+
+#INT_EXT2
+void  EXT2_isr(void) 
+{
+   output_low(PIN_D7);
+   
+}
+
+void main()
+{
+
+   ext_int_edge(H_TO_L);
+   clear_interrupt(INT_EXT1);
+   clear_interrupt(INT_EXT2);
+   enable_interrupts(INT_EXT1);
+   enable_interrupts(INT_EXT2);
+   enable_interrupts(GLOBAL);
+
+   while(TRUE)
+   {
+      output_(PIN_D6);
+      output_high(PIN_D7);
+   }
+
+}

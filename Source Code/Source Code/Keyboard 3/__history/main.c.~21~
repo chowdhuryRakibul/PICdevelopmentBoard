@@ -1,0 +1,157 @@
+#include <main.h>
+#define LCD_ENABLE_PIN PIN_D2
+#define LCD_RS_PIN PIN_D0
+#define LCD_RW_PIN PIN_D1
+#define LCD_DATA4 PIN_D4
+#define LCD_DATA5 PIN_D5
+#define LCD_DATA6 PIN_D6
+#define LCD_DATA7 PIN_D7
+/****************Keyboard Pin****************/
+#define C1 PIN_B7
+#define C2 PIN_B6
+#define C3 PIN_B5
+#define C4 PIN_B4
+#define R1 PIN_B3
+#define R2 PIN_B2
+#define R3 PIN_B1
+#define R4 PIN_B0
+
+#include <lcd.c>
+char keypad();
+void main()
+{
+  
+char k;
+   lcd_init();
+
+   lcd_putc("\fReady...\n");
+   while(TRUE)
+   {
+      k=keypad();
+      if(k!=0)
+      {
+         lcd_gotoxy(1, 2);
+         lcd_putc(k);
+      }
+     
+   }
+
+}
+
+
+
+char keypad()
+{
+/*
+All the coloumns are kept externally pulls up. So we have to make the rows low
+and then check the coloumn whether it is low.
+if low then the key pressed. 
+*/
+while(TRUE)
+{
+/******Scan ROW 1 Keys****************/
+   output_low(R1);
+   output_high(R2); 
+   output_high(R3); 
+   output_high(R4); 
+   if(input_state(C1)==0)
+      {
+         delay_ms(20);
+         return '1';
+      }
+    else if(input_state(C2)==0)
+      {
+         delay_ms(20);
+         return '2';
+      }
+     else if(input_state(C3)==0)
+      {
+         delay_ms(20);
+         return '3';
+      }
+     else if(input_state(C4)==0)
+      {
+         delay_ms(20);
+         return '4';
+      }
+  /*********Scan Row 2 Keys**************/
+      output_high(R1);
+      output_low(R2); 
+      output_high(R3); 
+      output_high(R4); 
+      if(input_state(C1)==0)
+         {
+            delay_ms(20);
+            return '5';
+         }
+       else if(input_state(C2)==0)
+         {
+            delay_ms(20);
+            return '6';
+         }
+        else if(input_state(C3)==0)
+         {
+            delay_ms(20);
+            return '7';
+         }
+        else if(input_state(C4)==0)
+         {
+            delay_ms(20);
+            return '8';
+         }
+   /*********Scan Row 3 Keys**************/
+      output_high(R1);
+      output_high(R2); 
+      output_low(R3); 
+      output_high(R4); 
+      if(input_state(C1)==0)
+         {
+            delay_ms(20);
+            return '9';
+         }
+       else if(input_state(C2)==0)
+         {
+            delay_ms(20);
+            return '0';
+         }
+        else if(input_state(C3)==0)
+         {
+            delay_ms(20);
+            return '*';
+         }
+        else if(input_state(C4)==0)
+         {
+            delay_ms(20);
+            return '+';
+         }
+   /*********Scan Row 4 Keys**************/
+      output_high(R1);
+      output_high(R2); 
+      output_high(R3); 
+      output_low(R4); 
+      if(input_state(C1)==0)
+         {
+            delay_ms(20);
+            return 'A';
+         }
+       else if(input_state(C2)==0)
+         {
+            delay_ms(20);
+            return 'B';
+         }
+        else if(input_state(C3)==0)
+         {
+            delay_ms(20);
+            return 'C';
+         }
+        else if(input_state(C4)==0)
+         {
+            delay_ms(20);
+            return 'D';
+         }
+       
+}    
+         
+}
+
+

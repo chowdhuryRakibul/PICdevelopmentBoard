@@ -1,0 +1,120 @@
+ÀÄmain
+   ÀÄMAIN  0/598  Ram=1
+      ÃÄ@cinit1  (Inline)  Ram=0
+      ÃÄlcd_init  0/128  Ram=6
+      ³  ÃÄ@delay_ms1  0/38  Ram=1
+      ³  ÃÄlcd_send_nibble  0/72  Ram=1
+      ³  ÃÄ@delay_ms1  0/38  Ram=1
+      ³  ÃÄlcd_send_nibble  0/72  Ram=1
+      ³  ÃÄ@delay_ms1  0/38  Ram=1
+      ³  ÀÄlcd_send_byte  0/70  Ram=3
+      ³     ÃÄlcd_read_byte  0/78  Ram=3
+      ³     ³  ÃÄlcd_read_nibble  0/82  Ram=2
+      ³     ³  ÀÄlcd_read_nibble  0/82  Ram=2
+      ³     ÃÄlcd_send_nibble  0/72  Ram=1
+      ³     ÀÄlcd_send_nibble  0/72  Ram=1
+      ÃÄ@PSTRINGC_700  0/34  Ram=2
+      ³  ÀÄlcd_putc  0/80  Ram=1
+      ³     ÃÄlcd_gotoxy  0/34  Ram=4
+      ³     ³  ÀÄlcd_send_byte  0/70  Ram=3
+      ³     ³     ÀÄ*
+      ³     ÃÄlcd_send_byte  0/70  Ram=3
+      ³     ³  ÀÄ*
+      ³     ÃÄ@delay_ms1  0/38  Ram=1
+      ³     ÃÄlcd_gotoxy  0/34  Ram=4
+      ³     ³  ÀÄ*
+      ³     ÃÄlcd_send_byte  0/70  Ram=3
+      ³     ³  ÀÄ*
+      ³     ÀÄlcd_send_byte  0/70  Ram=3
+      ³        ÀÄ*
+      ÃÄ@delay_ms1  0/38  Ram=1
+      ÃÄds1307_init  0/312  Ram=2
+      ³  ÃÄ@I2C_WRITE_1  0/108  Ram=1
+      ³  ÃÄ@I2C_WRITE_1  0/108  Ram=1
+      ³  ÃÄ@I2C_WRITE_1  0/108  Ram=1
+      ³  ÃÄ@I2C_READ_1  0/102  Ram=3
+      ³  ÃÄbcd2bin  0/38  Ram=3
+      ³  ÃÄ@I2C_WRITE_1  0/108  Ram=1
+      ³  ÃÄ@I2C_WRITE_1  0/108  Ram=1
+      ³  ÃÄbin2bcd  0/36  Ram=3
+      ³  ÃÄ@I2C_WRITE_1  0/108  Ram=1
+      ³  ÃÄ@I2C_WRITE_1  0/108  Ram=1
+      ³  ÃÄ@I2C_WRITE_1  0/108  Ram=1
+      ³  ÀÄ@I2C_WRITE_1  0/108  Ram=1
+      ÃÄds1307_set_date_time  0/206  Ram=8
+      ³  ÃÄ@I2C_WRITE_1  0/108  Ram=1
+      ³  ÃÄ@I2C_WRITE_1  0/108  Ram=1
+      ³  ÃÄbin2bcd  0/36  Ram=3
+      ³  ÃÄ@I2C_WRITE_1  0/108  Ram=1
+      ³  ÃÄbin2bcd  0/36  Ram=3
+      ³  ÃÄ@I2C_WRITE_1  0/108  Ram=1
+      ³  ÃÄbin2bcd  0/36  Ram=3
+      ³  ÃÄ@I2C_WRITE_1  0/108  Ram=1
+      ³  ÃÄbin2bcd  0/36  Ram=3
+      ³  ÃÄ@I2C_WRITE_1  0/108  Ram=1
+      ³  ÃÄbin2bcd  0/36  Ram=3
+      ³  ÃÄ@I2C_WRITE_1  0/108  Ram=1
+      ³  ÃÄbin2bcd  0/36  Ram=3
+      ³  ÃÄ@I2C_WRITE_1  0/108  Ram=1
+      ³  ÃÄbin2bcd  0/36  Ram=3
+      ³  ÃÄ@I2C_WRITE_1  0/108  Ram=1
+      ³  ÀÄ@I2C_WRITE_1  0/108  Ram=1
+      ÃÄds1307_get_date  (Inline)  Ram=5
+      ³  ÃÄ@I2C_WRITE_1  0/108  Ram=1
+      ³  ÃÄ@I2C_WRITE_1  0/108  Ram=1
+      ³  ÃÄ@I2C_WRITE_1  0/108  Ram=1
+      ³  ÃÄ@I2C_READ_1  0/102  Ram=3
+      ³  ÃÄbcd2bin  0/38  Ram=3
+      ³  ÃÄ@I2C_READ_1  0/102  Ram=3
+      ³  ÃÄbcd2bin  0/38  Ram=3
+      ³  ÃÄ@I2C_READ_1  0/102  Ram=3
+      ³  ÃÄbcd2bin  0/38  Ram=3
+      ³  ÃÄ@I2C_READ_1  0/102  Ram=3
+      ³  ÀÄbcd2bin  0/38  Ram=3
+      ÃÄds1307_get_time  (Inline)  Ram=4
+      ³  ÃÄ@I2C_WRITE_1  0/108  Ram=1
+      ³  ÃÄ@I2C_WRITE_1  0/108  Ram=1
+      ³  ÃÄ@I2C_WRITE_1  0/108  Ram=1
+      ³  ÃÄ@I2C_READ_1  0/102  Ram=3
+      ³  ÃÄbcd2bin  0/38  Ram=3
+      ³  ÃÄ@I2C_READ_1  0/102  Ram=3
+      ³  ÃÄbcd2bin  0/38  Ram=3
+      ³  ÃÄ@I2C_READ_1  0/102  Ram=3
+      ³  ÀÄbcd2bin  0/38  Ram=3
+      ÃÄ@PSTRINGCN_700  0/30  Ram=3
+      ³  ÀÄlcd_putc  0/80  Ram=1
+      ³     ÀÄ*
+      ÃÄ@PRINTF_D0_700  0/170  Ram=6
+      ³  ÃÄ@DIV88  0/40  Ram=3
+      ³  ÃÄ@DIV88  0/40  Ram=3
+      ³  ÃÄlcd_putc  0/80  Ram=1
+      ³  ³  ÀÄ*
+      ³  ÃÄlcd_putc  0/80  Ram=1
+      ³  ³  ÀÄ*
+      ³  ÃÄlcd_putc  0/80  Ram=1
+      ³  ³  ÀÄ*
+      ³  ÀÄlcd_putc  0/80  Ram=1
+      ³     ÀÄ*
+      ÃÄlcd_putc  0/80  Ram=1
+      ³  ÀÄ*
+      ÃÄ@PRINTF_D0_700  0/170  Ram=6
+      ³  ÀÄ*
+      ÃÄlcd_putc  0/80  Ram=1
+      ³  ÀÄ*
+      ÃÄ@PRINTF_D0_700  0/170  Ram=6
+      ³  ÀÄ*
+      ÃÄlcd_putc  0/80  Ram=1
+      ³  ÀÄ*
+      ÃÄ@PSTRINGCN_700  0/30  Ram=3
+      ³  ÀÄ*
+      ÃÄ@PRINTF_D0_700  0/170  Ram=6
+      ³  ÀÄ*
+      ÃÄlcd_putc  0/80  Ram=1
+      ³  ÀÄ*
+      ÃÄ@PRINTF_D0_700  0/170  Ram=6
+      ³  ÀÄ*
+      ÃÄlcd_putc  0/80  Ram=1
+      ³  ÀÄ*
+      ÃÄ@PRINTF_D0_700  0/170  Ram=6
+      ³  ÀÄ*
+      ÀÄ@delay_ms1  0/38  Ram=1

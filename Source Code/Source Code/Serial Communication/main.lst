@@ -1,0 +1,126 @@
+CCS PCH C Compiler, Version 5.070, 5967               03-Aug-17 18:17
+
+               Filename:   C:\Users\Shuvangkar\Google Drive\Learning Folder\PIC18F Development Board\Source Code\Serial Communication\main.lst
+
+               ROM used:   134 bytes (0%)
+                           Largest free fragment is 32634
+               RAM used:   6 (0%) at main() level
+                           8 (0%) worst case
+               Stack used: 0 locations
+               Stack size: 31
+
+*
+0000:  GOTO   0036
+.................... #include <main.h> 
+.................... #include <18F4550.h> 
+.................... //////// Standard Header file for the PIC18F4550 device //////////////// 
+.................... #device PIC18F4550 
+0004:  DATA 48,69
+0006:  DATA 54,68
+0008:  DATA 65,72
+000A:  DATA 65,00
+000C:  DATA 48,69
+000E:  DATA 54,68
+0010:  DATA 65,72
+0012:  DATA 65,00
+0014:  TBLRD*+
+0016:  MOVF   FF5,F
+0018:  BZ    0034
+001A:  MOVFF  FF6,06
+001E:  MOVFF  FF7,07
+0022:  MOVF   FF5,W
+0024:  BTFSS  F9E.4
+0026:  BRA    0024
+0028:  MOVWF  FAD
+002A:  MOVFF  06,FF6
+002E:  MOVFF  07,FF7
+0032:  BRA    0014
+0034:  RETURN 0
+....................  
+.................... #list 
+....................  
+.................... #device ADC=16 
+....................  
+.................... #FUSES NOWDT                    //No Watch Dog Timer 
+.................... #FUSES WDT128                   //Watch Dog Timer uses 1:128 Postscale 
+.................... #FUSES NOLPT1OSC                //Timer1 configured for higher power operation 
+.................... //#FUSES RSS2048                  //Medium sized secure RAM 
+.................... #FUSES NOWRTB                   //Boot block not write protected 
+.................... #FUSES NOWRTC                   //Configuration registers not write protected 
+.................... //#FUSES SDOC7                    //SDO is on RC7 
+.................... #FUSES BORV43                   //Brownout reset at 4.3V 
+.................... //#FUSES PLL_DIV_4              
+.................... //#FUSES NODS                     //Deep Sleep operation is always disabled 
+.................... //#FUSES HFOFST                   //High Frequency INTRC starts clocking CPU immediately 
+.................... #FUSES NOLPT1OSC                //Timer1 configured for higher power operation 
+.................... //#FUSES VREFNORM_CVREFNORM       //VREF and CVREF are mapped to their default pins 
+.................... //#FUSES CCP2B5                   //CCP2 input/output multiplexed with RB5 
+.................... #FUSES NOXINST                  //Extended set extension and Indexed Addressing mode disabled (Legacy mode) 
+.................... //#FUSES VREFALT_CVREFNORM        //VREF is mapped to AVDD and AVSS; CVREF is mapped to default pins 
+.................... #FUSES NOWRTC                   //Configuration registers not write protected 
+.................... #FUSES NOWRTB                   //Boot block not write protected 
+....................  
+.................... #use delay(crystal=20000000) 
+.................... #use rs232(baud=9600,parity=N,xmit=PIN_C6,rcv=PIN_C7,bits=8,stream=PORT1) 
+....................  
+....................  
+.................... void main() 
+0036:  CLRF   FF8
+0038:  BCF    FD0.7
+003A:  BSF    FB8.3
+003C:  MOVLW  08
+003E:  MOVWF  FAF
+0040:  MOVLW  02
+0042:  MOVWF  FB0
+0044:  MOVLW  A6
+0046:  MOVWF  FAC
+0048:  MOVLW  90
+004A:  MOVWF  FAB
+004C:  CLRF   05
+004E:  CLRF   04
+0050:  MOVF   FC1,W
+0052:  ANDLW  C0
+0054:  IORLW  0F
+0056:  MOVWF  FC1
+0058:  MOVLW  07
+005A:  MOVWF  FB4
+.................... { 
+....................  
+....................    setup_uart(9600); 
+005C:  BSF    FB8.3
+005E:  MOVLW  08
+0060:  MOVWF  FAF
+0062:  MOVLW  02
+0064:  MOVWF  FB0
+0066:  MOVLW  A6
+0068:  MOVWF  FAC
+006A:  MOVLW  90
+006C:  MOVWF  FAB
+....................    printf("HiThere"); 
+006E:  MOVLW  04
+0070:  MOVWF  FF6
+0072:  MOVLW  00
+0074:  MOVWF  FF7
+0076:  RCALL  0014
+....................    while(TRUE) 
+....................    { 
+....................       printf("HiThere"); 
+0078:  MOVLW  0C
+007A:  MOVWF  FF6
+007C:  MOVLW  00
+007E:  MOVWF  FF7
+0080:  RCALL  0014
+0082:  BRA    0078
+....................    } 
+....................  
+.................... } 
+0084:  SLEEP 
+
+Configuration Fuses:
+   Word  1: CC04   PLL5 CPUDIV1 NOUSBDIV HS FCMEN IESO
+   Word  2: 0E2E   PUT BROWNOUT BORV43 VREGEN NOWDT WDT128
+   Word  3: 8300   CCP2C1 PBADEN NOLPT1OSC MCLR
+   Word  4: 00A1   STVREN NOLVP ICSP2 NOXINST NODEBUG
+   Word  5: C00F   NOPROTECT NOCPB NOCPD
+   Word  6: E00F   NOWRT NOWRTC NOWRTB NOWRTD
+   Word  7: 400F   NOEBTR NOEBTRB

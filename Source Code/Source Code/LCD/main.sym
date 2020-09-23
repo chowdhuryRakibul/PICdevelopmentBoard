@@ -1,0 +1,91 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+005     lcd_init.i
+005     @PSTRINGC_670.@SCRATCH1
+006-009 lcd_init.LCD_INIT_STRING
+006     @PSTRINGC_670.@SCRATCH2
+007     lcd_putc.c
+008     lcd_gotoxy.x
+009     lcd_gotoxy.y
+00A     @delay_ms1.P1
+00A     lcd_gotoxy.address
+00A     lcd_init.@SCRATCH1
+00B     lcd_gotoxy.@SCRATCH1
+00C     lcd_send_byte.address
+00D     lcd_send_byte.n
+00E     lcd_read_byte.low
+00E     lcd_send_byte.@SCRATCH1
+00F     lcd_send_nibble.n
+00F     lcd_read_byte.high
+010     lcd_read_nibble.n
+010     lcd_read_byte.@SCRATCH1
+011     lcd_read_nibble.@SCRATCH1
+F83     PSP_DATA
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2_LOW
+FBB     CCP_2
+FBC     CCP_2_HIGH
+FBE     CCP_1
+FBE     CCP_1_LOW
+FBF     CCP_1_HIGH
+FE1-FE2 @WRITE_PACKED_MEMORY.P1
+FE1-FE2 @READ_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PROGRAM_MEMORY.P1
+FE9-FEA @READ_PROGRAM_MEMORY.P2
+FE9-FEA @READ_PACKED_MEMORY.P3
+FE9-FEA @WRITE_PACKED_MEMORY.P4
+FF6-FF8 @READ_PROGRAM_MEMORY.P1
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+000004  @const685.call
+000010  @delay_ms1
+000036  lcd_send_nibble
+00007E  lcd_read_nibble
+0000D0  lcd_read_byte
+00011E  lcd_send_byte
+000164  lcd_init
+0001E4  lcd_gotoxy
+000206  lcd_putc
+000258  @PSTRINGC_670
+00027A  MAIN
+00027A  @cinit1
+00028A  @cinit2
+
+Project Directory:
+    C:\Users\Admin\Desktop\PIC Dev Board PCB by Shuvo Vai\Source Code\Source Code\LCD\
+
+Project Files:
+    main.c                                                  [10-Feb-18 14:42  CRC=F365C986]
+    main.h                                                  [01-Aug-17 22:33  CRC=111F0D7E]
+    ..\..\..\..\..\..\..\Program Files (x86)\PICC\devices\18F4550.h [12-Nov-13 14:35  CRC=5337E248]
+    ..\..\..\..\..\..\..\Program Files (x86)\PICC\drivers\lcd.c [19-Sep-13 15:38  CRC=D1A6378A]
+
+Source signature=FB092860
+
+Units:
+    main (main)
+
+Compiler Settings:
+    Processor:      PIC18F4550
+    Pointer Size:   16
+    ADC Range:      0-65535
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   main.xsym
+    Errors:      main.err
+    Ext Symbols: main.esym
+    INHX32:      main.hex
+    Symbols:     main.sym
+    List:        main.lst
+    Debug/COFF:  main.cof
+    Project:     main.ccspjt
+    Call Tree:   main.tre
+    Statistics:  main.STA

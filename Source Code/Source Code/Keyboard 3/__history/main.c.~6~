@@ -1,0 +1,198 @@
+#include <main.h>
+#define LCD_ENABLE_PIN PIN_D2
+#define LCD_RS_PIN PIN_D0
+#define LCD_RW_PIN PIN_D1
+#define LCD_DATA4 PIN_D4
+#define LCD_DATA5 PIN_D5
+#define LCD_DATA6 PIN_D6
+#define LCD_DATA7 PIN_D7
+#include <lcd.c>
+
+char readkey() 
+{ 
+     output_low(PIN_B1); 
+     output_low(PIN_B2); 
+     output_low(PIN_B3); 
+     output_high(PIN_B0); 
+     delay_ms(100);          
+     if(input_state(PIN_B4)==1) 
+     {    
+           delay_ms(20); 
+         return '1';                        
+                                            
+     } 
+      
+     if(input_state(PIN_B5)==1)            
+     {    
+           delay_ms(20); 
+         return '4'; 
+      
+     } 
+      
+     if(input_state(PIN_B6)==1) 
+     {    
+           delay_ms(20); 
+         return '7';  
+      
+     } 
+      
+     if(input_state(PIN_B7)==1) 
+     {            
+         delay_ms(20); 
+         return '*'; 
+      
+     } 
+     output_low(PIN_B0); 
+     delay_ms(100); 
+                        
+     output_low(PIN_B0); 
+     output_low(PIN_B2); 
+     output_low(PIN_B3); 
+     output_high(PIN_B1);                                          
+     delay_ms(100);  
+     if(input_state(PIN_B4)==1) 
+     {            
+         delay_ms(20); 
+         return '2'; 
+                    
+     }                
+      
+     if(input_state(PIN_B5)==1) 
+     {                  
+         delay_ms(20); 
+         return '5'; 
+                      
+     } 
+      
+     if(input_state(PIN_B6)==1) 
+     { 
+         delay_ms(20); 
+         return '8'; 
+      
+     } 
+      
+     if(input_state(PIN_B7)==1) 
+     { 
+         delay_ms(20); 
+         return '0'; 
+      
+     } 
+     output_low(PIN_B1); 
+     delay_ms(100);                    
+      
+     output_low(PIN_B0); 
+     output_low(PIN_B1); 
+     output_low(PIN_B2); 
+     output_high(PIN_B3); 
+     delay_ms(100);  
+     if(input_state(PIN_B4)==1) 
+     { 
+         delay_ms(20); 
+         return '3'; 
+      
+     } 
+      
+     if(input_state(PIN_B5)==1) 
+     {                
+         delay_ms(20); 
+         return '6'; 
+      
+     } 
+      
+     if(input_state(PIN_B6)==1) 
+     { 
+         delay_ms(20); 
+         return '9'; 
+                      
+     } 
+      
+     if(input_state(PIN_B7)==1) 
+     { 
+         delay_ms(20); 
+         return '#'; 
+                      
+     } 
+     output_low(PIN_B3); 
+     delay_ms(100); 
+      
+     output_low(PIN_B0); 
+     output_low(PIN_B1);                    
+     output_low(PIN_B3); 
+     output_high(PIN_B2); 
+     delay_ms(100);  
+     if(input_state(PIN_B4)==1) 
+     {                  
+         delay_ms(20); 
+         return 'A'; 
+              
+     } 
+      
+     if(input_state(PIN_B5)==1) 
+     { 
+         delay_ms(20); 
+         return 'B'; 
+      
+     } 
+      
+     if(input_state(PIN_B6)==1) 
+     { 
+         delay_ms(20); 
+         return 'C'; 
+      
+     } 
+      
+     if(input_state(PIN_B7)==1) 
+     {    
+         delay_ms(20); 
+         return 'D'; 
+                      
+     } 
+     output_low(PIN_B2);          
+     delay_ms(100);  
+                        
+
+     return 'x';            
+}      
+
+//=========================== 
+void main() 
+{ 
+SET_TRIS_B(0b11110000);//you mus set in main function before infinite loop port configuration 
+char key; 
+//kbd_init();                            
+lcd_init(); 
+                                                                        
+      
+lcd_gotoxy(1,1); 
+lcd_putc("Basliyor ..."); 
+delay_ms(2000);                                              
+lcd_putc("\f"); 
+                                              
+while(TRUE)                                              
+  {                                  
+   lcd_gotoxy(1,1);                                    
+   lcd_putc("Tus takimi okunuyor ..."); 
+   delay_ms(200);                                    
+   lcd_putc("\f");                                  
+   lcd_putc("...");                    
+   delay_ms(200); 
+   lcd_putc("\f"); 
+   key = readkey(); 
+   delay_ms(500); 
+   if(key!='x') 
+     {                                          
+      if(key=='*'){        
+         lcd_gotoxy(1,2);                  
+         printf(lcd_putc,"%c", '*'); 
+         delay_ms(1000); 
+         lcd_putc("\f");                        
+         } 
+      else{                                              
+         lcd_gotoxy(1,2);                  
+         printf(lcd_putc,"%c", key); 
+         delay_ms(1000); 
+         lcd_putc("\f"); 
+         } 
+     }                                                                            
+  }                                        
+} 

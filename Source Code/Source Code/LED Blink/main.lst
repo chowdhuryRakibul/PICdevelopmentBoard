@@ -1,0 +1,120 @@
+CCS PCH C Compiler, Version 5.015, 5967               10-Feb-18 14:47
+
+               Filename:   C:\Users\Admin\Desktop\PIC Dev Board PCB by Shuvo Vai\Source Code\Source Code\LED Blink\main.lst
+
+               ROM used:   134 bytes (0%)
+                           Largest free fragment is 32634
+               RAM used:   5 (0%) at main() level
+                           8 (0%) worst case
+               Stack used: 1 locations
+               Stack size: 31
+
+*
+0000:  GOTO   002C
+.................... //#include <main.h> 
+....................  
+.................... #include <18F4550.h> 
+.................... //////////// Standard Header file for the PIC18F4550 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC18F4550 
+....................  
+.................... #list 
+....................  
+.................... #fuses NOMCLR INTRC_IO 
+.................... #use delay(clock=8000000) 
+0004:  CLRF   FEA
+0006:  MOVLW  08
+0008:  MOVWF  FE9
+000A:  MOVF   FEF,W
+000C:  BZ    0028
+000E:  MOVLW  02
+0010:  MOVWF  01
+0012:  CLRF   00
+0014:  DECFSZ 00,F
+0016:  BRA    0014
+0018:  DECFSZ 01,F
+001A:  BRA    0012
+001C:  MOVLW  97
+001E:  MOVWF  00
+0020:  DECFSZ 00,F
+0022:  BRA    0020
+0024:  DECFSZ FEF,F
+0026:  BRA    000E
+0028:  GOTO   007A (RETURN)
+.................... void main() 
+002C:  CLRF   FF8
+002E:  BCF    FD0.7
+0030:  MOVLW  70
+0032:  MOVWF  FD3
+0034:  MOVF   FD3,W
+0036:  MOVF   FC1,W
+0038:  ANDLW  C0
+003A:  IORLW  0F
+003C:  MOVWF  FC1
+003E:  MOVLW  07
+0040:  MOVWF  FB4
+.................... { 
+....................    SET_TRIS_D( 0xFF ); 
+0042:  MOVLW  FF
+0044:  MOVWF  F95
+....................    int bit = 0; 
+....................    int i = 0; 
+0046:  CLRF   05
+0048:  CLRF   06
+....................     
+....................    while(TRUE) 
+....................    { 
+....................       for(i = 0;i<8;i++) 
+004A:  CLRF   06
+004C:  MOVF   06,W
+004E:  SUBLW  07
+0050:  BNC   0082
+....................          { 
+....................             bit = 1<<i; 
+0052:  MOVLW  01
+0054:  MOVWF  05
+0056:  MOVF   06,W
+0058:  MOVWF  01
+005A:  BZ    0064
+005C:  BCF    FD8.0
+005E:  RLCF   05,F
+0060:  DECFSZ 01,F
+0062:  BRA    005C
+....................              output_d(~bit); 
+0064:  MOVFF  05,07
+0068:  COMF   07,F
+006A:  CLRF   F95
+006C:  MOVFF  07,F8C
+....................              delay_ms(500); 
+0070:  MOVLW  02
+0072:  MOVWF  07
+0074:  MOVLW  FA
+0076:  MOVWF  08
+0078:  BRA    0004
+007A:  DECFSZ 07,F
+007C:  BRA    0074
+007E:  INCF   06,F
+0080:  BRA    004C
+....................          } 
+0082:  BRA    004A
+....................    } 
+....................  
+.................... } 
+0084:  SLEEP 
+
+Configuration Fuses:
+   Word  1: C83F   PLL12 CPUDIV4 USBDIV INTRC_IO FCMEN IESO
+   Word  2: 1E3E   PUT BROWNOUT BORV21 VREGEN NOWDT WDT32768
+   Word  3: 0700   CCP2C1 PBADEN LPT1OSC NOMCLR
+   Word  4: 00A1   STVREN NOLVP ICSP2 NOXINST NODEBUG
+   Word  5: C00F   NOPROTECT NOCPB NOCPD
+   Word  6: E00F   NOWRT NOWRTC NOWRTB NOWRTD
+   Word  7: 400F   NOEBTR NOEBTRB

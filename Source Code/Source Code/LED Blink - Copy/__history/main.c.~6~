@@ -1,0 +1,15 @@
+//#include <main.h>
+
+#include <18F4550.h>
+void main()
+{
+
+   while(TRUE)
+   {
+      output_high(PIN_D0);
+      delay(1000);
+      output_low(PIN_D0);
+      delay(1000);
+   }
+
+}

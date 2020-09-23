@@ -1,0 +1,17 @@
+#include <main.h>
+#define disp1 PIN_A2
+#define disp2 PIN_A1
+#define disp3 PIN_A0
+#define disp4 PIN_A3
+int col[8] = {PIN_C1,PIN_D4,PIN_D1,PIN_D6,PIN_A0,PIN_D0,PIN_A1,PIN_A4};
+
+void main()
+{
+  
+   while(TRUE)
+   {
+      output_high(PIN_C1);
+      output_low(PIN_D5);
+   }
+
+}
